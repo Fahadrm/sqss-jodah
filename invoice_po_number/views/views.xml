@@ -13,8 +13,55 @@
                 </field>
 
 
+                 <xpath expr="//field[@name='invoice_line_ids']" position="after">
+
+                    <group>
+                        <group>
+
+                            <field name="transpotation_charge"/>
+                            <field name="loading_charge"/>
+                            <field name="unloading_charge"/>
+                            <field name="weighning_charge"/>
+                            <field name="equipment_rental_charge"/>
+                            <field name="labor_charge"/>
+
+
+                        </group>
+                    </group>
+                </xpath>
+
+                <field name="amount_total" position="before">
+
+                <field name="other_charges"/>
+
+                </field>
+
+
+
+
+
+
             </field>
         </record>
+
+
+
+
+      <!--<record id="sale_view_sale_order_cpo_number" model="ir.ui.view">-->
+            <!--<field name="name">sale order cpo number</field>-->
+            <!--<field name="model">sale.order</field>-->
+            <!--<field name="inherit_id" ref="sale.view_order_form"/>-->
+            <!--<field name="arch" type="xml">-->
+
+
+
+                 <!--<xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">-->
+                    <!--<field name="item_code"/>-->
+                <!--</xpath>-->
+
+
+            <!--</field>-->
+        <!--</record>-->
 
 
       <record id="stock_picking_order_form" model="ir.ui.view">
@@ -25,8 +72,13 @@
 
                <xpath expr="//sheet/group/group/field[@name='scheduled_date']" position="after">
                 <field name="cpo_number"/>
+                   <field name="payment_terms"/>
 
             </xpath>
+
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="after">
+                    <field name="item_code"/>
+                </xpath>
 
 
         </field>
