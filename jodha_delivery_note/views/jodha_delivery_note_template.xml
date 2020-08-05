@@ -1,0 +1,235 @@
+<odoo>
+    <data>
+       <template id="jodha_delivery_slip">
+                    <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                <div class="header">
+
+                      <div class="row">
+                          <img t-att-src="'/jodha_delivery_note/static/description/src/img/logo.png'"/>
+                      </div>
+                      <div class="row">
+                              <div class="col-4" style="font-weight:bold;">
+                                <p style="font-size : 12px;"><span t-field="res_company.partner_id.street"/>
+                                <span t-field="res_company.partner_id.street2"/>
+                                   <span t-field="res_company.partner_id.city"/>
+                                <span t-field="res_company.state_id.name"/>
+                                <span t-field="res_company.partner_id.zip"/>
+                               |<span t-field="res_company.country_id.name"/>
+                                 | Tel: <span t-field="res_company.partner_id.phone"/></p>
+                              </div>
+                              <div class="col-4">
+                              </div>
+                              <div class="col-4">
+                                   <p style="font-size : 12px; font-weight:bold;" >VAT# <span t-field="res_company.vat" align="right" />ضريبة</p>
+                              </div>
+                      </div>
+
+                </div>
+                <div class="page">
+                    <style>
+                        .Row {
+                                 display: table;
+                                 width: 100%; /*Optional*/
+                             }
+                        @font-face {
+                            font-family: 'Latheef';
+                            src: url('/jodha_delivery_note/static/src/fonts/LateefRegOT.ttf') format('truetype');
+                        }
+                        .pageText{ white-space:pre !important; // this wraps the xml text.}
+                    </style>
+                     <div class="row">
+                            <h4 style="text-align: center; font-family:Latheef;">مذكرة تسليم</h4>
+                            <h4 style="text-align: center; text-decoration: underline; margin-top:-9px;">DELIVERY NOTE</h4>
+                     </div>
+                     <div class="row" >
+                        <div style="width:58%;Text-align:center;float:left;">
+                             <table border="1" style="font-size: 11px; border-collapse: collapse;" width="90%; ">
+                                                <tr style="font-weight:bold;">
+                                                    <td><span style="font-size: 11px; float: left;">Customer</span> <span style="font-size: 11px; float: right; font-family:Latheef; ">العميل</span> </td>
+                                                </tr>
+                                                  <tr style="font-weight:bold;">
+                                                    <td style="border-bottom : none;"><span style="font-size: 11px; float: left;" t-field="o.partner_id.name"/><span style=" font-size: 11px; float: right;">
+                                                        <t t-esc="o.partner_id.partner_arabic_name"/>
+                                                    </span></td> </tr>
+                                                    <tr><td style="border-bottom : none; border-top : none; color:white;"><span>.</span></td></tr>
+                                                    <tr style="font-weight:bold;"><td style="border-bottom : none; border-top : none; font-size: 11px; float: left; text-align: left;"><span t-field="o.partner_id.street"/> <span t-field="o.partner_id.city"/></td></tr>
+                                                    <tr style="font-weight:bold;"><td style="border-bottom : none; border-top : none; font-size: 11px; float: left; text-align: left;"><span t-field="o.partner_id.state_id.name"/> <span t-field="o.partner_id.country_id.name"/></td></tr>
+                                                    <tr style="font-weight:bold;"><td  style="border-bottom : none; border-top : none; font-size: 11px; float: left; text-align: left;"><span >TEL:</span><span t-field="o.partner_id.phone"/></td></tr>
+                                                    <tr style="font-weight:bold;"><td  style="border-bottom : none; border-top : none; font-size: 11px; float: left; text-align: left;"><span >CR:</span><span t-field="o.partner_id.phone"/></td></tr>
+                                                    <tr style="font-weight:bold;"><td  style="border-bottom : none; border-top : none; font-size: 11px; float: left; text-align: left;"><span >VAT:</span><span t-field="o.partner_id.vat"/></td></tr>
+                                                    <tr style="font-weight:bold;"><td  style="border-bottom : none; border-top : none; font-size: 21px; float: left; text-align: left; color:white;">|</td></tr>
+                                                     <tr style="font-weight:bold;"><td  style="border-bottom : none; border-top : none; font-size: 21px; float: left; text-align: left; color:white;">|</td></tr>
+
+                                                    <tr style="font-weight:bold;"><td  style="border-top : none; font-size: 11px; float: left; text-align: left; color:white;">|</td></tr>
+
+                                    </table>
+                        </div>
+                        <div style="Text-align:right;Width:40%;float:right">
+                               <table border="1" style="font-size: 11px; border-collapse: collapse;" width="100% ">
+                                              <tr style="font-weight:bold; " >
+                                                 <td  width="40%" style="border-bottom : none;" ><span style="font-size: 12px; float: right;">رقم مذكرة تسليم</span></td>
+                                                 <th rowspan="2" width="60% " style="text-align: center;"><span t-field="o.name"/></th>
+
+                                                 </tr>
+                                                <tr style="font-weight:bold;">
+                                                     <td style="border-top : none;" width="40%" >DN No.</td>
+                                                </tr>
+                                                <tr style="font-weight:bold;">
+                                                 <td style="border-bottom : none;" ><span style="font-size: 12px; float: right;">التاريخ</span></td>
+                                                 <th rowspan="2" style="text-align: center;">
+                                                     <t t-if="o.scheduled_date">
+
+                                                     <t t-esc="datetime.datetime.strptime(str(o.scheduled_date), '%Y-%m-%d %H:%M:%S').strftime('%d-%m-%Y')"/>
+                                                     </t>
+                                                 </th>
+
+                                                 </tr>
+                                                <tr style="font-weight:bold;">
+                                                     <td style="border-top : none;font-size: 12px;" >Date</td>
+                                                </tr>
+                                                <tr style="font-weight:bold;">
+                                                 <td style="border-bottom : none;" ><span style="font-size: 12px; float: right;">رقم طلب الشراء</span></td>
+                                                 <th rowspan="2" style="text-align: center;font-size: 12px;">
+                                                     <t t-esc="o.cpo_number"/>
+                                                 </th>
+
+                                                 </tr>
+                                                <tr style="font-weight:bold;">
+                                                     <td style="border-top : none;font-size: 12px;" >P.O.No</td>
+                                                </tr>
+                                                <tr style="font-weight:bold;">
+                                                 <td style="border-bottom : none;" ><span style="font-size: 10px; float: right;">رقم ضريبة للعميل</span></td>
+                                                 <th rowspan="2" style="text-align: center;"><span t-field="o.partner_id.vat"/></th>
+
+                                                 </tr>
+                                                <tr style="font-weight:bold;">
+                                                     <td style="border-top : none;font-size: 12px;" >Customer VAT No.</td>
+                                                </tr>
+                                                <tr style="font-weight:bold;">
+                                                 <td style="border-bottom : none;" ><span style="font-size: 12px; float: right;">شروط الدفع</span></td>
+                                                 <th rowspan="2" style="text-align: center;">
+
+                                                      <t t-if="o.payment_terms">
+                                                         <t t-esc="o.payment_terms.name"/>
+                                                     </t>
+
+
+
+                                                 </th>
+
+                                                 </tr>
+                                                <tr style="font-weight:bold;">
+                                                     <td style="border-top : none; font-size: 12px;" >Payment Terms</td>
+                                                </tr>
+
+                                   <tr style="font-weight:bold;">
+                                                 <td style="border-bottom : none;" ><span style="font-size: 12px; float: right;">موقع التسليم</span></td>
+                                                 <th rowspan="2" style="text-align: center;">
+                                                     <t t-if="o.location_id">
+                                                         <t t-esc="o.location_id.name"/>
+                                                     </t>
+                                                 </th>
+
+                                                 </tr>
+                                                <tr style="font-weight:bold;">
+                                                     <td style="border-top : none; font-size: 12px;" >Delivery Location</td>
+                                                </tr>
+
+
+
+                                    </table>
+                        </div>
+                    </div>
+                     <div class="row">
+                         <table border="1" style="font-size: 11px; border-collapse: collapse; margin-top: 15px;" width="100%; ">
+
+                                                     <tr style="Text-align:center; font-weight:bold;">
+                                                         <td style="border-bottom : none; width: 10%;" >رقم متسلسل</td>
+                                                         <td style="border-bottom : none; width: 8%;" >رقم الجزء</td>
+                                                         <td rowspan="2" style="border-bottom : none; width: 34%;" >Material Description</td>
+                                                         <td style="border-bottom : none; width: 8%;" >الوحدة</td>
+                                                         <td style="border-bottom : none; width: 13.3%;" >الكمية</td>
+                                                         <td style="border-bottom : none;" >ملاحظات</td>
+                                                     </tr>
+                                                     <tr style="Text-align:center; font-weight:bold;">
+                                                         <td style="border-top : none;" >Sl</td>
+                                                         <td style="border-top : none;" >Part No.</td>
+                                                         <td style="border-top : none;" >Unit</td>
+                                                         <td style="border-top : none;" >Quantity</td>
+                                                         <td style="border-top : none;" >Remarks</td>
+                                                     </tr>
+
+                            <tr style="Text-align:center;" t-foreach="o.move_ids_without_package" t-as="l">
+                                <td><t t-esc="l_index+1"/></td>
+                                <!--<td><t t-esc="l.item_code"/></td>-->
+                                <td><t t-esc="l.product_id.barcode"/></td>
+                                <td><t t-esc="l.product_id.name"/></td>
+                                <td><span t-field="l.product_uom.name"/></td>
+                                <!--<td><span t-field="l.qty_done"/></td>-->
+                                <td><span t-field="l.quantity_done"/></td>
+                                <td></td>
+                            </tr>
+                         </table>
+                     </div>
+
+                    <div class="row">
+                        <div style="width:57%;Text-align:center;float:left;">
+                        </div>
+                        <div style="Text-align:right;Width:43%;float:right; color: red;">
+                        <table>
+                                <tr style="font-weight:bold; color: red;">
+                                   <td> <span style="font-size: 11px; float: left;">تم التحقق من جميع البنود والكميات المذكورة أعلاه واستلامها في حالة جيدة</span></td>
+                                </tr>
+                                <tr style="font-weight:bold; color: red;">
+                                   <td> <span  style="font-size: 11px; text-align: center;">All items and quantities mentioned above have been</span></td>
+                                </tr>
+                                <tr style="font-weight:bold; color: red;">
+                                   <td> <span  style="font-size: 11px; text-align: center;">verified and received in good condition</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="width:58%;Text-align:center;float:left;">
+                            <table>
+                                <tr style="font-weight:bold;">
+                                   <td> <span style="font-size: 11px; float: left;">Sustainable quality supply and Services Co Ltd.</span></td>
+                                </tr>
+                                <tr style="font-weight:bold;">
+                                   <td align="center"> <span align="center" style="font-size: 11px; text-align: center;padding-right:3px;">Authorised By</span></td>
+                                </tr>
+                                <tr style="font-weight:bold;">
+                                   <td align="center"> <span align="center" style="font-size: 11px; text-align: center;padding-right:5px;">مفوض من</span></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div style="Text-align:right;Width:40%;float:right">
+                            <table>
+                                <tr style="font-weight:bold;">
+                                   <td> <span style="font-size: 11px; float: left;">Received By</span></td>
+                                </tr>
+                                <tr style="font-weight:bold;">
+                                   <td> <span  style="font-size: 11px; text-align: center;">Signature</span></td>
+                                </tr>
+                                <tr style="font-weight:bold;">
+                                   <td> <span  style="font-size: 11px; text-align: center;">Name</span></td>
+                                </tr>
+                                <tr style="font-weight:bold;">
+                                   <td> <span  style="font-size: 11px; text-align: center;">Date</span></td>
+                                </tr>
+                                <tr style="font-weight:bold;">
+                                   <td> <span  style="font-size: 11px; text-align: center;">Company Stamp</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+ </t>
+ </t>
+</template>
+    </data>
+</odoo>
+

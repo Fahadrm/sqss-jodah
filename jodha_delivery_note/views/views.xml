@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="jodha_delivery_note.list">
+      <field name="name">jodha_delivery_note list</field>
+      <field name="model">jodha_delivery_note.jodha_delivery_note</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="jodha_delivery_note.action_window">
+      <field name="name">jodha_delivery_note window</field>
+      <field name="res_model">jodha_delivery_note.jodha_delivery_note</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="jodha_delivery_note.action_server">
+      <field name="name">jodha_delivery_note server</field>
+      <field name="model_id" ref="model_jodha_delivery_note_jodha_delivery_note"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="jodha_delivery_note" id="jodha_delivery_note.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="jodha_delivery_note.menu_1" parent="jodha_delivery_note.menu_root"/>
+    <menuitem name="Menu 2" id="jodha_delivery_note.menu_2" parent="jodha_delivery_note.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="jodha_delivery_note.menu_1_list" parent="jodha_delivery_note.menu_1"
+              action="jodha_delivery_note.action_window"/>
+    <menuitem name="Server to list" id="jodha_delivery_note" parent="jodha_delivery_note.menu_2"
+              action="jodha_delivery_note.action_server"/>
+-->
+  </data>
+</odoo>

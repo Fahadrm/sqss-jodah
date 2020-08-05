@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+   <report
+    id="jodha_deliverynote_print"
+    model="stock.picking"
+    string="Delivery Slip With Header"
+    report_type="qweb-pdf"
+    name="jodha_delivery_note.jodha_delivery_slip"
+    file="jodha_delivery_note.jodha_delivery_slip"
+    />
+    </data>
+</odoo>
